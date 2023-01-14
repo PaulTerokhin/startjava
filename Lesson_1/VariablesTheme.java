@@ -19,6 +19,8 @@ public class VariablesTheme {
         System.out.println("тип usb: " + usbType);
         System.out.println("наличие порта lan: " + hasLan);
 
+        System.out.println(" ");
+
         // 2 задача
 
         System.out.println("2. Расчет стоимости товара со скидкой");
@@ -30,6 +32,8 @@ public class VariablesTheme {
         System.out.println("сумма скидки: " + (int) sumDisc);
         System.out.println("общая стоимость товаров со скидкой: " + (int) discTotal);
 
+        System.out.println(" ");
+
         // 3 задача
 
         System.out.println("3. Вывод слова JAVA");
@@ -38,6 +42,8 @@ public class VariablesTheme {
         System.out.println("   J   a a  v   v  a a");
         System.out.println("J  J  aaaaa  V V  aaaaa");
         System.out.println(" JJ  a     a  V  a     a");
+
+        System.out.println(" ");
 
         // 4 задача
 
@@ -69,6 +75,8 @@ public class VariablesTheme {
         System.out.print(long1 + "   -   ");
         System.out.println(long3 + " ");
         // Или инкремент и декремент нуждается в записи "++x и x--"?
+
+        System.out.println(" ");
 
         // 5 задача
 
@@ -105,6 +113,8 @@ public class VariablesTheme {
         System.out.print(num1 + " ");
         System.out.println(num2);
 
+        System.out.println(" ");
+
         // 6 задача
 
         System.out.println("6. Вывод символов и их кодов");
@@ -124,7 +134,8 @@ public class VariablesTheme {
         System.out.println(ch4);
         System.out.println((int)(ch5));
         System.out.println(ch5);
-        
+
+        System.out.println(" ");
 
         // 7 задача
 
@@ -142,6 +153,8 @@ public class VariablesTheme {
         System.out.println(" " + ch10 + ch12 + ch12
          + ch12 + ch12 + ch10 + ch11 + ch12 + ch12 + ch11 + " ");
 
+        System.out.println(" ");
+
         // 8 задача
 
         System.out.println("8.Вывод количества сотен, десятков и единиц числа");
@@ -158,6 +171,8 @@ public class VariablesTheme {
         System.out.println(num3 + " единиц");
         System.out.println("Сумма его цифр = " + sumNum);
         System.out.println("Произведение = " + multNum);
+
+        System.out.println(" ");
 
         // 9 задача
 
