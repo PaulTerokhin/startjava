@@ -33,15 +33,16 @@ public class VariablesTheme {
         // 3 задача
 
         System.out.println("3. Вывод слова JAVA");
+
         System.out.println("   J    a  v     v  a");
         System.out.println("   J   a a  v   v  a a");
         System.out.println("J  J  aaaaa  V V  aaaaa");
         System.out.println(" JJ  a     a  V  a     a");
 
         // 4 задача
-        /
 
         System.out.println("4. Вывод min и max значений целых числовых типов");
+
         byte byte1 = 127;
         short short1 = 32_767;
         int int1 = 2_147_483_647;
@@ -67,7 +68,7 @@ public class VariablesTheme {
         System.out.println(int3 + " ");
         System.out.print(long1 + "   -   ");
         System.out.println(long3 + " ");
-        // Или инкремент и декремент это "++x и x--"?
+        // Или инкремент и декремент нуждается в записи "++x и x--"?
 
         // 5 задача
 
@@ -167,41 +168,6 @@ public class VariablesTheme {
         int minutes = (totalSeconds % 3600) / 60;
         int seconds = (totalSeconds % 3600) % 60;
         System.out.println(hours + ":" + minutes + ":" + seconds);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
