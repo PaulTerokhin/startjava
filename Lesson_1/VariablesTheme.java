@@ -21,19 +21,19 @@ public class VariablesTheme {
 
         // 2 задача
 
-        System.out.println(" "); System.out.println("2. Расчет стоимости товара со скидкой");
+        System.out.println("\n2. Расчет стоимости товара со скидкой");
 
         byte penPrice = 100; 
         short bookPrice = 200;
         int price = penPrice + bookPrice;
         double sumDiscount = price * 0.11;
-        int discountPrice = price - (int) sumDiscount;
-        System.out.println("сумма скидки: " + (int) sumDiscount);
+        double discountPrice = price - sumDiscount;
+        System.out.println("сумма скидки: " + sumDiscount);
         System.out.println("общая стоимость товаров со скидкой: " + discountPrice);
 
         // 3 задача
 
-        System.out.println(" "); System.out.println("3. Вывод слова JAVA");
+        System.out.println("\n3. Вывод слова JAVA");
 
         System.out.println("   J    a  v     v  a");
         System.out.println("   J   a a  v   v  a a");
@@ -42,83 +42,63 @@ public class VariablesTheme {
 
         // 4 задача
 
-        System.out.println(" "); 
-        System.out.println("4. Вывод min и max значений целых числовых типов");
+        System.out.println("\n4. Вывод min и max значений целых числовых типов");
 
         byte maxByte = 127;
-        System.out.println(maxByte);
-        maxByte++;
-        System.out.println(maxByte);
-        maxByte--;
-        System.out.println(maxByte);
-
         short maxShort = 32_767;
-        System.out.println(maxShort);
-        maxShort++;
-        System.out.println(maxShort);
-        maxShort--;
-        System.out.println(maxShort);
-
         int maxInt = 2_147_483_647;
-        System.out.println(maxInt);
-        maxInt++;
-        System.out.println(maxInt);
-        maxInt--;
-        System.out.println(maxInt);
-
         long maxLong = 9_223_372_036_854_775_807L;
-        System.out.println(maxLong);
-        maxLong++;
-        System.out.println(maxLong);
-        maxLong--;
-        System.out.println(maxLong);
+        System.out.println(maxByte + " " + (++maxByte) + " " + (--maxByte));
+        System.out.println(maxShort + " " + (++maxShort) + " " + (--maxShort));
+        System.out.println(maxInt + " " + (++maxInt) + " " + (--maxInt));
+        System.out.println(maxLong + " " + (++maxLong) + " " + (--maxLong));
 
         // 5 задача
 
-        System.out.println(" "); System.out.println("5. Перестановка значений переменных");
+        System.out.println("\n5. Перестановка значений переменных");
 
         int num1 = 2; //7
         int num2 = 5; //2
-        int num3; num3 = num1;
+        int num3 = num1;
 
         System.out.println("с помощью третьей переменной");
-        System.out.print(num1 + " "); System.out.println(num2);
+        System.out.println(num1 + " " + num2);
         num1 = num2;
         num2 = num3;
-        System.out.print(num1 + " "); System.out.println(num2);
+        System.out.println(num1 + " " + num2);
 
         System.out.println("с помощью арифметических операций");
-        System.out.print(num1 + " "); System.out.println(num2);
+        System.out.println(num1 + " " + num2);
         num1 += num2;
         num2 = num1 - num2;
         num1 -= num2;
-        System.out.print(num1 + " "); System.out.println(num2);
+        System.out.println(num1 + " " + num2);
 
         System.out.println("с помощью побитовой операции");
-        System.out.print(num1 + " "); System.out.println(num2);
+        System.out.println(num1 + " " + num2);
         num1 ^= num2;
         num2 ^= num1;
         num1 ^= num2;
-        System.out.print(num1 + " "); System.out.println(num2);
+        System.out.println(num1 + " " + num2);
 
         // 6 задача
 
-        System.out.println(" "); System.out.println("6. Вывод символов и их кодов");
+        System.out.println("\n6. Вывод символов и их кодов");
 
         char ch1 = '#';
         char ch2 = '&';
         char ch3 = '@';
         char ch4 = '^';
         char ch5 = '_';
-        System.out.print((int) ch1); System.out.println(" " + ch1);
-        System.out.print((int) ch2); System.out.println(" " + ch2);
-        System.out.print((int) ch3); System.out.println(" " + ch3);
-        System.out.print((int) ch4); System.out.println(" " + ch4);
-        System.out.print((int) ch5); System.out.println(" " + ch5);
+        System.out.println((int) ch1 + " " + ch1);
+        System.out.println((int) ch2 + " " + ch2);
+        System.out.println((int) ch3 + " " + ch3);
+        System.out.println((int) ch4 + " " + ch4);
+        System.out.println((int) ch5 + " " + ch5);
 
         // 7 задача
 
-        System.out.println(" "); System.out.println("7.Вывод в консоль ASCII-арт Дюка");
+        System.out.println("\n7.Вывод в консоль ASCII-арт Дюка");
 
         char forwardSlash = '/';
         char backSlash = '\\';
@@ -136,8 +116,7 @@ public class VariablesTheme {
 
         // 8 задача
 
-        System.out.println(" ");
-        System.out.println("8.Вывод количества сотен, десятков и единиц числа");
+        System.out.println("\n8.Вывод количества сотен, десятков и единиц числа");
 
         int srcNum = 123;
         num1 = srcNum / 100;
@@ -154,7 +133,7 @@ public class VariablesTheme {
 
         // 9 задача
 
-        System.out.println(" "); System.out.println("9.Вывод времени");
+        System.out.println("\n9.Вывод времени");
 
         int totalSeconds = 86399;
         int hours = totalSeconds / 3600;
