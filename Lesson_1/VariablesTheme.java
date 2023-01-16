@@ -100,36 +100,36 @@ public class VariablesTheme {
 
         System.out.println("\n7.Вывод в консоль ASCII-арт Дюка");
 
-        char forwardSlash = '/';
+        char slash = '/';
         char backSlash = '\\';
         char underscore = '_';
         char openParenthesis = '(';
         char closeParenthesis = ')';
-        System.out.println("     " + forwardSlash + backSlash + "     ");
-        System.out.println("    " + forwardSlash + "  " + backSlash + "    ");
-        System.out.println("   " + forwardSlash + underscore + openParenthesis + " "
-        + closeParenthesis + backSlash + "   ");
-        System.out.println("  " + forwardSlash + "      " + backSlash + "  ");
-        System.out.println(" " + forwardSlash + underscore + underscore
-        + underscore + underscore + forwardSlash + backSlash + underscore + underscore
-        + backSlash + " ");
+        System.out.println("     " + slash + backSlash);
+        System.out.println("    " + slash + "  " + backSlash);
+        System.out.println("   " + slash + underscore + openParenthesis + " " + 
+                closeParenthesis + backSlash);
+        System.out.println("  " + slash + "      " + backSlash);
+        System.out.println(" " + slash + underscore + underscore + 
+                underscore + underscore + slash + backSlash + underscore + underscore + 
+                backSlash);
 
         // 8 задача
 
         System.out.println("\n8.Вывод количества сотен, десятков и единиц числа");
 
         int srcNum = 123;
-        num1 = srcNum / 100;
-        num2 = srcNum % 11;
-        num3 = srcNum / 40;
-        int multNum = num1 * num2 * num3;
-        int sumNum = num1 + num2 + num3;
+        int hundreds = srcNum % 1000 / 100;
+        int tens = srcNum % 100 / 10;
+        int units = srcNum % 10;
+        int product = hundreds * tens * units;
+        int sum = hundreds + tens + units;
         System.out.println("Число " + srcNum + " содержит:");
-        System.out.println(num1 + " сотен");
-        System.out.println(num2 + " десятков");
-        System.out.println(num3 + " единиц");
-        System.out.println("Сумма его цифр = " + sumNum);
-        System.out.println("Произведение = " + multNum);
+        System.out.println(hundreds + " сотен");
+        System.out.println(tens + " десятков");
+        System.out.println(units + " единиц");
+        System.out.println("Сумма его цифр = " + sum);
+        System.out.println("Произведение = " + product);
 
         // 9 задача
 
@@ -138,8 +138,7 @@ public class VariablesTheme {
         int totalSeconds = 86399;
         int hours = totalSeconds / 3600;
         int minutes = (totalSeconds % 3600) / 60;
-        int seconds = (totalSeconds % 3600) % 60;
+        int seconds = totalSeconds % 60;
         System.out.println(hours + ":" + minutes + ":" + seconds);
-
     }
 }
