@@ -111,23 +111,23 @@ public class VariablesTheme {
                 closeParenthesis + backSlash);
         System.out.println("  " + slash + "      " + backSlash);
         System.out.println(" " + slash + underscore + underscore + 
-                underscore + underscore + slash + backSlash + underscore + underscore + 
-                backSlash);
+                underscore + underscore + slash + backSlash + underscore + 
+                underscore + backSlash);
 
         // 8 задача
 
         System.out.println("\n8.Вывод количества сотен, десятков и единиц числа");
 
         int srcNum = 123;
-        int hundreds = srcNum % 1000 / 100;
+        int hundreds = srcNum / 100;
         int tens = srcNum % 100 / 10;
-        int units = srcNum % 10;
-        int product = hundreds * tens * units;
-        int sum = hundreds + tens + units;
+        int ones = srcNum % 10;
+        int product = hundreds * tens * ones;
+        int sum = hundreds + tens + ones;
         System.out.println("Число " + srcNum + " содержит:");
         System.out.println(hundreds + " сотен");
         System.out.println(tens + " десятков");
-        System.out.println(units + " единиц");
+        System.out.println(ones + " единиц");
         System.out.println("Сумма его цифр = " + sum);
         System.out.println("Произведение = " + product);
 
