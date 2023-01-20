@@ -6,7 +6,7 @@ public class IfElseStatementTheme {
         byte age = 25;
         boolean maleGender = true;
         float height = 1.90f;
-        char firstLetterOfName;
+        char firstLetterOfName = "Michael".charAt(0);
 
         if (age > 20) {
             System.out.println("adult");
@@ -26,7 +26,6 @@ public class IfElseStatementTheme {
             System.out.println("tall");
         }
 
-        firstLetterOfName = "Michael".charAt(0);
         if (firstLetterOfName == 'M') {
             System.out.println("name starts with M");
         } else if (firstLetterOfName == 'I') { 
@@ -118,18 +117,16 @@ public class IfElseStatementTheme {
         System.out.println("\n6.Подсчет суммы вклада и начисленных банком %");
 
         int deposit = 300_000;
-        int interest;
-        int accruedInterest;
+        int interest = 5;
 
-        if (deposit < 100_000) {
-            interest = 5;
-        } else if (deposit >= 100_000 && deposit <= 300_000) {
+        if (deposit >= 100_000 && deposit <= 300_000) {
             interest = 7;
-        } else { 
+        } else if (deposit > 300_000) { 
             interest = 10;
         }
 
-        accruedInterest = deposit * interest / 100;
+        int accruedInterest = deposit * interest / 100;
+
         System.out.println("Сумма вклада = " + deposit + "\nНачисленный % = " + accruedInterest + 
                 "\nИтоговая сумма с % = " + (deposit + accruedInterest));
 
@@ -191,26 +188,24 @@ public class IfElseStatementTheme {
         выдаваемую сумму
         */
 
-        int amount = 567;
-        int numberOfBanknotes100 = 0;
-        int numberOfBanknotes10 = 0;
-        int numberOfBanknotes1 = 0;
-        
+        int amount = 889;
+        int numberOfBanknotes100 = 10;
+        int numberOfBanknotes10 = 5;
+        int numberOfBanknotes1 = 50;
+        int numberOfTens = amount % 100 / 10;
+
         System.out.println(amount);
+
         if (amount == 1100) {
-            numberOfBanknotes100 = 10;
-            numberOfBanknotes10 = 5;
-            numberOfBanknotes1 = 50;
             System.out.println(numberOfBanknotes100 + " банкнот номиналом 100\n" + 
                     numberOfBanknotes10 + " банкнот номиналом 10\n" +
                     + numberOfBanknotes1 + " банкнот номиналом 1");
         } else if (amount < 1100) {
             numberOfBanknotes100 = amount / 100;
-            if (amount % 100 / 10 < 5) {
+            if (numberOfTens < 5) {
                 numberOfBanknotes10 = amount % 100 / 10;
                 numberOfBanknotes1 = amount % 10;
-            } else if (amount % 100 / 10 >= 5) {
-                numberOfBanknotes10 = 5;
+            } else if (numberOfTens >= 5) {
                 numberOfBanknotes1 = amount - (numberOfBanknotes100 * 100) - 50;
             }
             System.out.println(numberOfBanknotes100 + " банкнот номиналом 100\n" + 
