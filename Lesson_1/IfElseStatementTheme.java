@@ -179,40 +179,39 @@ public class IfElseStatementTheme {
 
         System.out.println("\n9.Подсчет количества банкнот");
 
-        /*
-        10 банкнот номиналом 100
-        5 банкнот номиналом 10
-        50 банкнот номиналом 1 
-        номиналы банкнот
-        требуемое их количество
-        выдаваемую сумму
-        */
+        int amount = 567;
+        int numberOfBanknotes100 = 10, numberOfBanknotes10 = 5, numberOfBanknotes1 = 50;
+        int hundreds = amount / 100, tens = amount / 10 % 10, ones = amount % 10;
+        int maxAmount = numberOfBanknotes100 * 100 + numberOfBanknotes10 * 10 + numberOfBanknotes1;
+        int requiredOfBanknotes100, requiredOfBanknotes10, requiredOfBanknotes1;
+        int amountWithoutBanknotes100;
 
-        int amount = 889;
-        int numberOfBanknotes100 = 10;
-        int numberOfBanknotes10 = 5;
-        int numberOfBanknotes1 = 50;
-        int numberOfTens = amount % 100 / 10;
-
-        System.out.println(amount);
-
-        if (amount == 1100) {
-            System.out.println(numberOfBanknotes100 + " банкнот номиналом 100\n" + 
-                    numberOfBanknotes10 + " банкнот номиналом 10\n" +
-                    + numberOfBanknotes1 + " банкнот номиналом 1");
-        } else if (amount < 1100) {
-            numberOfBanknotes100 = amount / 100;
-            if (numberOfTens < 5) {
-                numberOfBanknotes10 = amount % 100 / 10;
-                numberOfBanknotes1 = amount % 10;
-            } else if (numberOfTens >= 5) {
-                numberOfBanknotes1 = amount - (numberOfBanknotes100 * 100) - 50;
+        if (amount <= maxAmount) {
+            if (hundreds > numberOfBanknotes100) {
+                requiredOfBanknotes100 = numberOfBanknotes100;
+            } else {
+                requiredOfBanknotes100 = hundreds;
             }
-            System.out.println(numberOfBanknotes100 + " банкнот номиналом 100\n" + 
-                    numberOfBanknotes10 + " банкнот номиналом 10\n" +
-                    + numberOfBanknotes1 + " банкнот номиналом 1");
+            amountWithoutBanknotes100 = amount - requiredOfBanknotes100 * 100;
+            if (amountWithoutBanknotes100 / 10 <= numberOfBanknotes10 &&
+                        amountWithoutBanknotes100 % 10 <= numberOfBanknotes1) {
+                requiredOfBanknotes10 = amountWithoutBanknotes100 / 10;
+                requiredOfBanknotes1 = amountWithoutBanknotes100 % 10;
+                System.out.println(requiredOfBanknotes100 + " банкнот номиналом 100\n" + 
+                    requiredOfBanknotes10 + " банкнот номиналом 10\n" +
+                    + requiredOfBanknotes1 + " банкнот номиналом 1");
+            } else if (amountWithoutBanknotes100 / 10 > numberOfBanknotes10 &&
+                    amountWithoutBanknotes100 % 10 <= numberOfBanknotes1) {
+                requiredOfBanknotes10 = numberOfBanknotes10;
+                requiredOfBanknotes1 = amountWithoutBanknotes100 - numberOfBanknotes10 * 10;
+                System.out.println(requiredOfBanknotes100 + " банкнот номиналом 100\n" + 
+                    requiredOfBanknotes10 + " банкнот номиналом 10\n" +
+                    + requiredOfBanknotes1 + " банкнот номиналом 1");
+            } else {
+                System.out.println("Не хватает купюр");
+            }
         } else {
-            System.out.println("не хватает банкнот");
+            System.out.println("Не хватает купюр");
         }
     }
 }
