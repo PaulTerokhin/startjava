@@ -179,39 +179,26 @@ public class IfElseStatementTheme {
 
         System.out.println("\n9.Подсчет количества банкнот");
 
-        int amount = 567;
-        int numberOfBanknotes100 = 10, numberOfBanknotes10 = 5, numberOfBanknotes1 = 50;
-        int hundreds = amount / 100, tens = amount / 10 % 10, ones = amount % 10;
-        int maxAmount = numberOfBanknotes100 * 100 + numberOfBanknotes10 * 10 + numberOfBanknotes1;
-        int requiredOfBanknotes100, requiredOfBanknotes10, requiredOfBanknotes1;
-        int amountWithoutBanknotes100;
-
-        if (amount <= maxAmount) {
-            if (hundreds > numberOfBanknotes100) {
-                requiredOfBanknotes100 = numberOfBanknotes100;
-            } else {
-                requiredOfBanknotes100 = hundreds;
-            }
-            amountWithoutBanknotes100 = amount - requiredOfBanknotes100 * 100;
-            if (amountWithoutBanknotes100 / 10 <= numberOfBanknotes10 &&
-                        amountWithoutBanknotes100 % 10 <= numberOfBanknotes1) {
-                requiredOfBanknotes10 = amountWithoutBanknotes100 / 10;
-                requiredOfBanknotes1 = amountWithoutBanknotes100 % 10;
-                System.out.println(requiredOfBanknotes100 + " банкнот номиналом 100\n" + 
-                    requiredOfBanknotes10 + " банкнот номиналом 10\n" +
-                    + requiredOfBanknotes1 + " банкнот номиналом 1");
-            } else if (amountWithoutBanknotes100 / 10 > numberOfBanknotes10 &&
-                    amountWithoutBanknotes100 % 10 <= numberOfBanknotes1) {
-                requiredOfBanknotes10 = numberOfBanknotes10;
-                requiredOfBanknotes1 = amountWithoutBanknotes100 - numberOfBanknotes10 * 10;
-                System.out.println(requiredOfBanknotes100 + " банкнот номиналом 100\n" + 
-                    requiredOfBanknotes10 + " банкнот номиналом 10\n" +
-                    + requiredOfBanknotes1 + " банкнот номиналом 1");
-            } else {
-                System.out.println("Не хватает купюр");
-            }
+        int withdrawAmount = 822;
+        int hundreds = withdrawAmount / 100;
+        int tens = withdrawAmount / 10 % 10;
+        int ones = withdrawAmount % 10;
+        int hundredsAtm = 10;
+        int tensAtm = 5;
+        int onesAtm = 50;
+        if (hundreds > hundredsAtm) {
+            tens += (hundreds - hundredsAtm) * 10;
+            hundreds = hundredsAtm;
+        }
+        if (tens > tensAtm) {
+            ones += (tens - tensAtm) * 10;
+            tens = tensAtm;
+        }
+        if (ones > onesAtm) {
+            System.out.println("Купюр в банкомате недостаточно.");
         } else {
-            System.out.println("Не хватает купюр");
+            System.out.println("Купюр 100$ - " + hundreds + " шт., купюр 10$ - " + tens +
+                " шт., купюр 1$ - " + ones + " шт.\nВсего " + withdrawAmount + "$ к выдаче");
         }
     }
 }
