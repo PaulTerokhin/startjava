@@ -121,61 +121,54 @@ public class CyclesTheme {
 
         System.out.println("\nФигура 2\n");
 
-        num1 = 0;
-        num2 = 5;
-        num3 = 1;
-        while (num2 >= num3) {
-            while (num1 <= num2 - 1) {
+        int charCount = 0;
+        int rowCount = 5;
+        while (rowCount >= 1) {
+            while (charCount <= rowCount - 1) {
                 System.out.print("#");
-                num1++;
+                charCount++;
             }
-            num2--;
-            num1 = 0;
+            rowCount--;
+            charCount = 0;
             System.out.println();
         }
 
         System.out.println("\nФигура 3\n");
 
-        num1 = 1;
-        num2 = 0;
-        num3 = 3;
+        int maxRows = 3;
+        rowCount = 1;
+        charCount = 0;
 
         do {
             do {
                 System.out.print("$");
-                num2++;
-            } while (num2 <= num1 - 1);
-            num2 = 0;
-            num1++;
+                charCount++;
+            } while (charCount <= rowCount - 1);
+            charCount = 0;
+            rowCount++;
             System.out.println();
-            if (num1 == 4) {
-               num3 = 5;
-                num2 = 2;
+            if (rowCount == 4) {
+                maxRows = 5;
+                charCount = 2;
             }
-            if (num1 == 5) {
-                num3 = 1;
-                num1 = 1;
+            if (rowCount == 5) {
+                maxRows = 1;
+                rowCount = 1;
             }
-        } while (num1 <= num3);
+        } while (rowCount <= maxRows);
 
         // task 7
 
         System.out.println("\n7.Отображение ASCII-символов\n");
 
-        char symbol1 = 1;
-        System.out.println("  dec" + "  char");
+        System.out.println("  dec" + " char");
 
         for (int i = 1; i <= 47; i += 2) {
-            System.out.printf("%4d", i);
-            System.out.println("    " + symbol1);
-            symbol1 = (char) (symbol1 + 2);
+            System.out.printf("%4d%4c%n", i, i);
         }
         
-        symbol1 = 98;
         for (int i = 98; i <= 122; i += 2) {
-            System.out.printf("%4d", i);
-            System.out.println("    " + symbol1);
-            symbol1 = (char) (symbol1 + 2);
+            System.out.printf("%4d%4c%n", i, i);
         }
 
         // task 8 
@@ -202,34 +195,27 @@ public class CyclesTheme {
         System.out.println("\n9.Определение, является ли число счастливым\n");
 
         srcNum = 532_424;
-        copySrcNum = srcNum; 
-        count = 0;
-        int step = 1;
-        int differenceSums = 0;
-        int sumLeftHalf = 0;
+        int leftHalf = srcNum / 1000;
+        int rightHalf = srcNum % 1000;
+        int copyLeftHalf = leftHalf, copyRightHalf = rightHalf;
+        int sumLeftHalf = 0, sumRightHalf = 0;
 
-        System.out.print("Сумма цифр ");
-        while (srcNum != 0) {
-            int digit = srcNum % 10;
-            differenceSums += step * (digit);
-            srcNum /= 10;
-            count++;
-            System.out.print(digit + " ");
-            if (count == 3) {
-                System.out.print("= " + differenceSums + "\nСумма цифр ");
-                step = - step;
-            }
-            if (count > 3) {
-                sumLeftHalf += digit;
-            }
+        for (int i = 1; i <= 3; i++) {
+            int leftDigit = leftHalf % 10;
+            int rightDigit = rightHalf % 10;
+            sumLeftHalf += leftDigit;
+            sumRightHalf += rightDigit;
+            leftHalf /= 10;
+            rightHalf /= 10;
         }
-        System.out.println("= " + sumLeftHalf);
-        if (differenceSums == 0 && count == 6) {
-            System.out.println("\nЧисло " + copySrcNum + " является счастливым");
-        } else if (count != 6) {
-            System.out.println("\nЧисло " + copySrcNum + " должно содержать 6 знаков");
+        
+        System.out.println("Сумма цифр " + copyLeftHalf + " = " + sumLeftHalf +
+                "\nСумма цифр " + copyRightHalf + " = " + sumRightHalf);
+
+        if (sumLeftHalf == sumRightHalf) {
+            System.out.println("\nЧисло " + srcNum + " является счастливым");
         } else {
-            System.out.println("\nЧисло " + copySrcNum + " не является счастливым");
+            System.out.println("\nЧисло " + srcNum + " не является счастливым");
         }
 
         // task 10 
