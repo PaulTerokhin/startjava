@@ -3,10 +3,12 @@ public class Calculator {
     public static void main(String[] args) {
         int number1 = 8, number2 = 3;
         char sign = '^';
-        int result = number1 + number2;
+        int result = 0;
 
         if (sign == '-') {
             result = number1 - number2;
+        } else if (sign == '+') {
+            result = number1 + number2;
         } else if (sign == '*') {
             result = number1 * number2;
         } else if (sign == '/') {
