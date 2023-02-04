@@ -4,22 +4,22 @@ class CalculatorTest {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String retry;
+        String suggestedAnswer;
         do {
             int number1 = inputNumber();
             char operation = inputOperation();
             int number2 = inputNumber();
-            Calculator test = new Calculator();
-            int result = test.calculation(number1, number2, operation);
+            Calculator calc = new Calculator();
+            int result = calc.calculation(number1, number2, operation);
             System.out.println("Результат операции: " + result);
-            retry = inputReply();
-        } while (retry.equals("yes"));
+            suggestedAnswer = inputReply();
+        } while (suggestedAnswer.equals("yes"));
     }
 
     private static int inputNumber() {
         System.out.println("Введите число");
         int number = scan.nextInt();
-        while (number <= 0 ) {
+        while (number <= 0) {
             System.out.print("Ваше число должно быть положительным.Введите число заново\n");
             number = scan.nextInt();
         }
@@ -28,8 +28,7 @@ class CalculatorTest {
 
     private static char inputOperation() {
         System.out.println("Введите операцию:");
-        char operation = scan.next().charAt(0);
-        return operation;
+        return scan.next().charAt(0);
     }
 
     private static String inputReply() {
