@@ -4,7 +4,7 @@ class CalculatorTest {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String suggestedAnswer;
+        String userAnswer;
         do {
             int number1 = inputNumber();
             char operation = inputOperation();
@@ -12,8 +12,8 @@ class CalculatorTest {
             Calculator calc = new Calculator();
             int result = calc.calculation(number1, number2, operation);
             System.out.println("Результат операции: " + result);
-            suggestedAnswer = inputReply();
-        } while (suggestedAnswer.equals("yes"));
+            userAnswer = inputReply();
+        } while (userAnswer.equals("yes"));
     }
 
     private static int inputNumber() {
