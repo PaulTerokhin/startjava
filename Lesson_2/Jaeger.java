@@ -6,6 +6,8 @@ public class Jaeger {
     private int speed;
     private int armor;
 
+    public Jaeger() {}
+
     public Jaeger(String modelName, String origin, float height, 
             float weight, int speed, int armor) {
         this.modelName = modelName;
@@ -14,11 +16,6 @@ public class Jaeger {
         this.weight = weight;
         this.speed = speed;
         this.armor = armor;
-        System.out.println("\nModel Name: " + modelName + "\nOrigin: " + origin + "\nHeight: "
-                + height + "\nSpeed: " + speed + "\nArmor: " + armor);
-    }
-    
-    public Jaeger() {
     }
 
     public String getModelName() {
@@ -82,7 +79,7 @@ public class Jaeger {
         System.out.println("activated");
     }
 
-    public void startShooting () {
+    public void startShooting() {
         System.out.println("shooting");
     }
 }
