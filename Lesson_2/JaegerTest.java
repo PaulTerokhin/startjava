@@ -19,6 +19,7 @@ public class JaegerTest {
         gipsy.startShooting();
 
         Jaeger coyote = new Jaeger("Coyote Tango", "USA", 85.34f, 2.312f, 5, 4);
+        
         System.out.println("\nModel Name: " + coyote.getModelName() + "\nOrigin: " + 
                 coyote.getOrigin() + "\nHeight: " + coyote.getHeight() + "\nSpeed: " + 
                 coyote.getSpeed() + "\nArmor: " + coyote.getArmor());
