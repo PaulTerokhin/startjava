@@ -1,3 +1,4 @@
+package com.startjava.lesson_2_3.person;
 
 public class Person {
     String name = "Michael";
@@ -9,15 +10,19 @@ public class Person {
     void move() {
         System.out.println("moving");
     }
+    
     void sit() {
         System.out.println("sitting");
     }
+    
     void run() {
         System.out.println("running");
     }
+    
     void speak() {
         System.out.println("speaking");
     }
+    
     void learnJava() {
         System.out.println("learning Java");
     }
