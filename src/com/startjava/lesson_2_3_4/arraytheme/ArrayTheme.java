@@ -6,10 +6,7 @@ public class ArrayTheme {
         int[] numbers = {1, 6, 5, 4, 7, 2, 3};
         int len = numbers.length;
 
-        for(int number : numbers) {
-            System.out.print(number + " ");
-        }
-        System.out.println();
+        displayArrayInt(numbers);
 
         for (int i = 0; i < len / 2; i++) {
             int j = numbers[len - i - 1];
@@ -17,26 +14,23 @@ public class ArrayTheme {
             numbers[i] = j;
         }
 
-        for(int number : numbers) {
-            System.out.print(number + " ");
-        }
+        displayArrayInt(numbers);
 
-        System.out.println("\n\n2.Вывод произведения элементов массива");
+        System.out.println("\n2.Вывод произведения элементов массива");
 
-        int[] nums = new int[10];
-        int result = 1;
-        len = nums.length;
+        numbers = new int[10];
+        len = numbers.length;
 
         for(int i = 0; i < len; i++) {
-            nums[i] = i;
+            numbers[i] = i;
         }
 
+        int result = 1;
         for(int i = 1; i < len - 1; i++) {
-            result *= nums[i];
-            String sign = (nums[i] == 8) ? " = " : " * ";
-            System.out.print(nums[i] + sign);
+            result *= numbers[i];
+            System.out.print(numbers[i] + ((numbers[i] == 8) ? " = " : " * "));
         }
-        System.out.println(result + "\n" + nums[0] + " " + nums[9]);
+        System.out.println(result + "\n" + numbers[0] + " " + numbers[9]);
 
         System.out.println("\n3.Удаление элементов массива");
 
@@ -48,14 +42,13 @@ public class ArrayTheme {
 
         for(int i = 0; i < len; i++) {
             doubleAr[i] = Math.random();
-            System.out.printf("%.3f  ", doubleAr[i]);
-            if (i == indexMaxNum) {
-                System.out.println();
-            }
         }
 
-        for(int i = 0; i < len; i++) {
-            if(doubleAr[i] > doubleAr[indexMaxNum]) {
+        displayArrayDouble(doubleAr);
+
+        double strategicValue = doubleAr[indexMaxNum];
+        for (int i = 0; i < len; i++) {
+            if (doubleAr[i] > strategicValue) {
                 doubleAr[i] = 0;
                 count++;
             }
@@ -63,58 +56,69 @@ public class ArrayTheme {
 
         System.out.println("\nИзмененный массив");
 
-        for(int i = 0; i < len; i++) {
-            System.out.printf("%.3f  ", doubleAr[i]);
-            if (i == indexMaxNum) {
-                System.out.println();
-            }
-        }
+        displayArrayDouble(doubleAr);
 
         System.out.println("\nКоличество обнуленных ячеек\n" + count);
 
         System.out.println("\n4.Вывод элементов массива лесенкой в обратном порядке");
 
-        char[] chars = new char[26];
+        char[] letters = new char[26];
         int i = 0;
-        for(char char1 = 'Z'; char1 >= 'A'; char1--) {
-            chars[i++] = char1;
+        for(char letter = 'A'; letter <= 'Z'; letter++) {
+            letters[i++] = letter;
         }
 
-        for(int rowCount = 0; rowCount <= chars.length; rowCount++) {
-            for(char char1 = chars[0]; char1 > chars[0] - rowCount; char1--) {
-                System.out.print(char1);
+        for(int rowCount = 0; rowCount <= letters.length; rowCount++) {
+            for(char letter = letters[25]; letter > letters[25] - rowCount; letter--) {
+                System.out.print(letter);
             }
             System.out.println();
         }
 
         System.out.println("\n5.Генерация уникальных чисел");
 
-        nums = new int[30];
+        numbers = new int[30];
         count = 0;
-        len = nums.length;
+        len = numbers.length;
 
         for (i = 0; i < len; i++) {
-            nums[i] = (int) (60 + Math.random() * 40);
+            numbers[i] = (int) (60 + Math.random() * 40);
         }
 
         for (i = 0; i < len - 1; i++) {
             for (int j = i + 1; j < len; j++) {
-                if (nums[i] == nums[j]) {
-                    nums[j] = (int) (60 + Math.random() * 40);
+                if (numbers[i] == numbers[j]) {
+                    numbers[j] = (int) (60 + Math.random() * 40);
                     i = 0;
                 }
-                if (nums[i] > nums[j]) {
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
+                if (numbers[i] > numbers[j]) {
+                    int temp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = temp;
                 }
             }
         }
 
-        for (int symbol : nums) {
+        for (int symbol : numbers) {
             System.out.print(symbol + " ");
             count++;
             if(count % 10 == 0) {
+                System.out.println();
+            }
+        }
+    }
+    private static void displayArrayInt(int[] array) {
+        for(int number : array) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+    }
+
+    private static void displayArrayDouble(double[] array) {
+        int len = array.length;
+        for (int i = 0; i < len; i++) {
+            System.out.printf("%.3f  ", array[i]);
+            if (i == len / 2) {
                 System.out.println();
             }
         }
