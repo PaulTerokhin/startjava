@@ -1,6 +1,7 @@
 package com.startjava.lesson_2_3_4.arraytheme;
 
 public class ArrayTheme {
+
     public static void main(String[] args) {
         System.out.println("1.Реверс значений массива");
         int[] numbers = {1, 6, 5, 4, 7, 2, 3};
@@ -8,9 +9,10 @@ public class ArrayTheme {
 
         displayArrayInt(numbers);
 
-        for (int i = 0; i < len / 2; i++) {
-            int j = numbers[len - i - 1];
-            numbers[len - i - 1] = numbers[i];
+        for (int i = 0; i <= len / 2; i++) {
+            len--;
+            int j = numbers[len - i];
+            numbers[len - i] = numbers[i];
             numbers[i] = j;
         }
 
@@ -28,7 +30,7 @@ public class ArrayTheme {
         int result = 1;
         for(int i = 1; i < len - 1; i++) {
             result *= numbers[i];
-            System.out.print(numbers[i] + ((numbers[i] == 8) ? " = " : " * "));
+            System.out.print(numbers[i] + ((numbers[i] != numbers[len - 2]) ? " * " : " = "));
         }
         System.out.println(result + "\n" + numbers[0] + " " + numbers[9]);
 
@@ -37,7 +39,6 @@ public class ArrayTheme {
         double[] doubleAr = new double[15];
         int count = 0;
         len = doubleAr.length;
-        int indexMaxNum = len / 2;
         System.out.println("Исходный массив");
 
         for(int i = 0; i < len; i++) {
@@ -46,9 +47,9 @@ public class ArrayTheme {
 
         displayArrayDouble(doubleAr);
 
-        double strategicValue = doubleAr[indexMaxNum];
+        double centerValue = doubleAr[len / 2];
         for (int i = 0; i < len; i++) {
-            if (doubleAr[i] > strategicValue) {
+            if (doubleAr[i] > centerValue) {
                 doubleAr[i] = 0;
                 count++;
             }
@@ -63,13 +64,13 @@ public class ArrayTheme {
         System.out.println("\n4.Вывод элементов массива лесенкой в обратном порядке");
 
         char[] letters = new char[26];
-        int i = 0;
-        for(char letter = 'A'; letter <= 'Z'; letter++) {
-            letters[i++] = letter;
+        len = letters.length;
+        for(int i = 0; i < len; i++) {
+            letters[i] =(char) ('A' + i);
         }
 
-        for(int rowCount = 0; rowCount <= letters.length; rowCount++) {
-            for(char letter = letters[25]; letter > letters[25] - rowCount; letter--) {
+        for(int rowCount = 0; rowCount <= len; rowCount++) {
+            for(char letter = letters[len - 1]; letter > letters[len - 1] - rowCount; letter--) {
                 System.out.print(letter);
             }
             System.out.println();
@@ -78,35 +79,61 @@ public class ArrayTheme {
         System.out.println("\n5.Генерация уникальных чисел");
 
         numbers = new int[30];
-        count = 0;
         len = numbers.length;
 
-        for (i = 0; i < len; i++) {
+        for (int i = 0; i < len; i++) {
             numbers[i] = (int) (60 + Math.random() * 40);
-        }
-
-        for (i = 0; i < len - 1; i++) {
-            for (int j = i + 1; j < len; j++) {
-                if (numbers[i] == numbers[j]) {
-                    numbers[j] = (int) (60 + Math.random() * 40);
-                    i = 0;
-                }
-                if (numbers[i] > numbers[j]) {
-                    int temp = numbers[i];
-                    numbers[i] = numbers[j];
-                    numbers[j] = temp;
+            for (int j = 0; j <= len - (len - i); j++) {
+                if(i != j) {
+                    if (numbers[i] == numbers[j]) {
+                        numbers[j] = (int) (60 + Math.random() * 40);
+                        i = 0;
+                    }
                 }
             }
         }
 
-        for (int symbol : numbers) {
-            System.out.print(symbol + " ");
+        for (int i = 1; i < numbers.length; i++) {
+            int temp = numbers[i];
+            int j = i - 1;
+            while(j >= 0 && temp < numbers[j]) {
+                numbers[j + 1] = numbers[j];
+                j--;
+            }
+            numbers[j + 1] = temp;
+        }
+
+        count = 0;
+        for (int number : numbers) {
+            System.out.print(number + " ");
             count++;
             if(count % 10 == 0) {
                 System.out.println();
             }
         }
+
+        System.out.println("\n6.Сдвиг элементов массива");
+
+        String[] strings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        count = 0;
+        for(String string : strings) {
+            System.out.print(string + " ");
+            boolean isEmpty = string.isBlank();
+            if(!isEmpty) {
+                count++;
+            }
+        }
+        System.out.println();
+
+        String[] sourceCopy = new String[count];
+        System.arraycopy(strings, 1, sourceCopy, 0,1);
+        System.arraycopy(strings, 3, sourceCopy, 1,3);
+        System.arraycopy(strings, 7, sourceCopy, 4,3);
+        for(String string : sourceCopy) {
+            System.out.print(string + " ");
+        }
     }
+
     private static void displayArrayInt(int[] array) {
         for(int number : array) {
             System.out.print(number + " ");
