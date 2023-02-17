@@ -11,8 +11,8 @@ public class ArrayTheme {
 
         for (int i = 0; i <= len / 2; i++) {
             len--;
-            int j = numbers[len - i];
-            numbers[len - i] = numbers[i];
+            int j = numbers[len];
+            numbers[len] = numbers[i];
             numbers[i] = j;
         }
 
@@ -30,7 +30,7 @@ public class ArrayTheme {
         int result = 1;
         for(int i = 1; i < len - 1; i++) {
             result *= numbers[i];
-            System.out.print(numbers[i] + ((numbers[i] != numbers[len - 2]) ? " * " : " = "));
+            System.out.print(numbers[i] + ((i != len - 2) ? " * " : " = "));
         }
         System.out.println(result + "\n" + numbers[0] + " " + numbers[9]);
 
@@ -47,9 +47,9 @@ public class ArrayTheme {
 
         displayArrayDouble(doubleAr);
 
-        double centerValue = doubleAr[len / 2];
+        double middleCellValue = doubleAr[len / 2];
         for (int i = 0; i < len; i++) {
-            if (doubleAr[i] > centerValue) {
+            if (doubleAr[i] > middleCellValue) {
                 doubleAr[i] = 0;
                 count++;
             }
@@ -82,18 +82,16 @@ public class ArrayTheme {
         len = numbers.length;
 
         for (int i = 0; i < len; i++) {
-            numbers[i] = (int) (60 + Math.random() * 40);
-            for (int j = 0; j <= len - (len - i); j++) {
-                if(i != j) {
-                    if (numbers[i] == numbers[j]) {
-                        numbers[j] = (int) (60 + Math.random() * 40);
-                        i = 0;
-                    }
+            int temp = (int) (60 + Math.random() * 40);
+            for(int j = 0; j < len - (len - i); j++) {
+                if (temp == numbers[j]) {
+                    i = 0;
                 }
             }
+            numbers[i] = temp;
         }
 
-        for (int i = 1; i < numbers.length; i++) {
+        for (int i = 1; i < len; i++) {
             int temp = numbers[i];
             int j = i - 1;
             while(j >= 0 && temp < numbers[j]) {
@@ -114,22 +112,27 @@ public class ArrayTheme {
 
         System.out.println("\n6.Сдвиг элементов массива");
 
-        String[] strings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        String[] srcArray = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         count = 0;
-        for(String string : strings) {
+        for(String string : srcArray) {
             System.out.print(string + " ");
-            boolean isEmpty = string.isBlank();
-            if(!isEmpty) {
+            if(!string.isBlank()) {
                 count++;
             }
         }
         System.out.println();
 
-        String[] sourceCopy = new String[count];
-        System.arraycopy(strings, 1, sourceCopy, 0,1);
-        System.arraycopy(strings, 3, sourceCopy, 1,3);
-        System.arraycopy(strings, 7, sourceCopy, 4,3);
-        for(String string : sourceCopy) {
+        String[] destArray = new String[count];
+
+        int j = 0;
+        for(int i = 0; i < srcArray.length; i++) {
+            if(!srcArray[i].isBlank()) {
+                System.arraycopy(srcArray, i, destArray, j,1);
+                j++;
+            }
+        }
+
+        for(String string : destArray) {
             System.out.print(string + " ");
         }
     }
