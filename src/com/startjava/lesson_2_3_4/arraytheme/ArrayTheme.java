@@ -91,14 +91,14 @@ public class ArrayTheme {
             arrayInt[i] = temp;
         }
 
-        for (int i = 1; i < len; i++) {
-            int temp = arrayInt[i];
-            int j = i - 1;
-            while(j >= 0 && temp < arrayInt[j]) {
-                arrayInt[j + 1] = arrayInt[j];
-                j--;
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = 0; j < len - i - 1; j++) {
+                if (arrayInt[j] > arrayInt[j + 1]) {
+                    int temp = arrayInt[j];
+                    arrayInt[j] = arrayInt[j + 1];
+                    arrayInt[j + 1] = temp;
+                }
             }
-            arrayInt[j + 1] = temp;
         }
 
         count = 0;
