@@ -13,7 +13,7 @@ public class Calculator {
             case '/':
                 return (double) number1 / number2;
             case '^':
-                return Math.pow((double) number1, (double) number2);
+                return Math.pow(number1, number2);
             case '%':
                 return Math.floorMod(number1, number2);
         }
