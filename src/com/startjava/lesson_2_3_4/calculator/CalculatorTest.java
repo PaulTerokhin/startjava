@@ -6,21 +6,18 @@ class CalculatorTest {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String userAnswer;
-        do {
-            String[] expression = inputMathExpression();
-            Calculator calc = new Calculator();
-            double result = calc.calculate(Integer.parseInt(expression[0]),
-                    Integer.parseInt(expression[2]), expression[1].charAt(0));
+        boolean isFinished = false;
+        while(!isFinished) {
+            String expression = inputMathExpression();
+            double result = Calculator.calculate(expression);
             showResult(result);
-            userAnswer = inputReply();
-        } while(userAnswer.equals("yes"));
+            isFinished = isNext();
+        }
     }
 
-    private static String[] inputMathExpression() {
+    private static String inputMathExpression() {
         System.out.println("\nВведите выражение формата: 2 ^ 10");
-        String string = scan.nextLine();
-        return string.split(" ");
+        return scan.nextLine();
     }
 
     private static void showResult(double result) {
@@ -32,16 +29,18 @@ class CalculatorTest {
         }
     }
 
-    private static String inputReply() {
+    private static boolean isNext() {
         System.out.println("Хотите продолжить вычисления? [yes/no]:");
         String choice = scan.nextLine();
+        boolean isFinished = false;
         if (choice.equals("no")) {
             System.out.println("Спасибо, что воспользовались калькулятором");
+            isFinished = true;
         } else if (choice.equals("yes")) {
             System.out.print("Давайте попробуем еще раз :)");
         } else {
-            inputReply();
+            isNext();
         }
-        return choice;
+        return isFinished;
     }
 }
