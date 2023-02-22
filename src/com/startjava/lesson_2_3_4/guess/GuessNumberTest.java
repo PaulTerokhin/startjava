@@ -25,9 +25,10 @@ public class GuessNumberTest {
     }
 
     private static void reset() {
-        Arrays.fill(Player.numbersPlayer1, 0, GuessNumber.triesCount + 1, 0 );
-        Arrays.fill(Player.numbersPlayer2, 0, GuessNumber.triesCount + 1, 0 );
+        Arrays.fill(Player.getNumbersPlayer1(), 0, GuessNumber.triesCount + 1, 0 );
+        Arrays.fill(Player.getNumbersPlayer2(), 0, GuessNumber.triesCount + 1, 0 );
         GuessNumber.triesCount = 1;
+        GuessNumber.isPlayer1winner = false;
     }
 
     private static String inputReply() {

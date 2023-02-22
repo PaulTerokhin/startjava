@@ -12,10 +12,10 @@ public class GuessNumber {
     private final Player player2;
     private final Random random = new Random();
     private final int hiddenNumber = random.nextInt(100 + 1);
-    static final int maxTries = 10;
+    private static final int maxTries = 10;
     static int triesCount = 1;
     // Переменная нужна,чтобы показать введенные числа правильно(без лишних 0)
-    private boolean isPlayer1winner = false;
+    static boolean isPlayer1winner = false;
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
@@ -45,15 +45,15 @@ public class GuessNumber {
         System.out.println(player.getName() + ", введите число: ");
         Scanner scan = new Scanner(System.in);
         int playerNumber = scan.nextInt();
-        saveNumber(player, playerNumber, triesCount);
+        saveNumber(player, playerNumber);
         return checkNumber(player, playerNumber);
     }
 
-    private void saveNumber(Player player, int number, int triesCount) {
+    private void saveNumber(Player player, int number) {
         if (player == player1) {
-            Player.numbersPlayer1[triesCount - 1] = number;
+            player1.setNumberPlayer1(number);
         } else {
-            Player.numbersPlayer2[triesCount - 1] = number;
+            player2.setNumberPlayer2(number);
         }
     }
 
@@ -74,18 +74,22 @@ public class GuessNumber {
     }
 
     private void showPlayersNumbers() {
-        int[] numbersPlayer1 = Arrays.copyOf(Player.numbersPlayer1, triesCount);
+        int[] numbersPlayer1 = Arrays.copyOf(Player.getNumbersPlayer1(), triesCount);
         for (int number : numbersPlayer1) {
             System.out.print(number + " ");
         }
         System.out.println();
 
-        int[] numbersPlayer2 = Arrays.copyOf(Player.numbersPlayer2, triesCount);
+        int[] numbersPlayer2 = Arrays.copyOf(Player.getNumbersPlayer2(), triesCount);
         if (isPlayer1winner) {
-            numbersPlayer2 = Arrays.copyOf(Player.numbersPlayer2, triesCount - 1);
+            numbersPlayer2 = Arrays.copyOf(Player.getNumbersPlayer2(), triesCount - 1);
         }
         for (int number : numbersPlayer2) {
             System.out.print(number + " ");
         }
+    }
+
+    public static int getMaxTries() {
+        return maxTries;
     }
 }
