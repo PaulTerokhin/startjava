@@ -1,10 +1,10 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Arrays;
+
 import java.util.Scanner;
 
 public class GuessNumberTest {
-
-    static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
         Player player1 = new Player(inputName());
@@ -14,16 +14,25 @@ public class GuessNumberTest {
         do {
             game.run();
             option = inputReply();
+            reset();
         } while (option.equals("yes"));
     }
 
     private static String inputName() {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Введите имя ");
         return scan.next();
     }
 
+    private static void reset() {
+        Arrays.fill(Player.numbersPlayer1, 0, GuessNumber.triesCount + 1, 0 );
+        Arrays.fill(Player.numbersPlayer2, 0, GuessNumber.triesCount + 1, 0 );
+        GuessNumber.triesCount = 1;
+    }
+
     private static String inputReply() {
-        System.out.println("Хотите сыграть еще раз? [yes/no]:");
+        System.out.println("\nХотите сыграть еще раз? [yes/no]:");
+        Scanner scan = new Scanner(System.in);
         String choice = scan.next();
         if (choice.equals("no")) {
             System.out.println("Спасибо, что поиграли с компьютером");
