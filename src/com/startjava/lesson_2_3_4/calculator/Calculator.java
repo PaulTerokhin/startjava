@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    static Scanner scan = new Scanner(System.in);
-
     public static double calculate(String mathExpression) {
         String[] expression = mathExpression.split(" ");
         int number1 = checkNumber(expression[0]);
@@ -24,7 +22,8 @@ public class Calculator {
     }
 
     private static int checkNumber(String positiveInteger) {
-        int number = 0;
+        int number;
+        Scanner scan = new Scanner(System.in);
         while (true) {
             try {
                 number = Integer.parseInt(positiveInteger);
