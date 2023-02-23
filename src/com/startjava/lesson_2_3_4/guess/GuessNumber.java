@@ -22,26 +22,27 @@ public class GuessNumber {
         this.player2 = player2;
     }
 
-     void run() {
+     void start() {
         System.out.println("У каждого игрока по " + maxTries + " попыток ");
         Player currentPlayer = player1;
         while(true) {
-            if (playRound(currentPlayer)) {
+            if (makeGuess(currentPlayer)) {
                 break;
             }
-            if(currentPlayer == player2) {
-                triesCount++;
-            }
-            if (triesCount > maxTries) {
-                System.out.println("Ваши попытки исчерпаны.Загаданное число " + hiddenNumber);
-                break;
+            if (currentPlayer == player2) {
+                if (triesCount < maxTries) {
+                    triesCount++;
+                } else {
+                    System.out.println("Ваши попытки исчерпаны.Загаданное число " + hiddenNumber);
+                    break;
+                }
             }
             currentPlayer = (currentPlayer == player1) ? player2 : player1;
         }
-         showPlayersNumbers();
+         displayGameResults();
     }
 
-    private boolean playRound(Player player) {
+    private boolean makeGuess(Player player) {
         System.out.println(player.getName() + ", введите число: ");
         Scanner scan = new Scanner(System.in);
         int playerNumber = scan.nextInt();
@@ -59,7 +60,8 @@ public class GuessNumber {
 
     private boolean checkNumber(Player player, int playerNumber) {
         if (playerNumber == hiddenNumber) {
-            System.out.println("Игрок " + player.getName() + " угадал число " + hiddenNumber + " с " + triesCount + " попытки");
+            System.out.println("Игрок " + player.getName() + " угадал число " +
+                    hiddenNumber + " с " + triesCount + " попытки");
             if (player == player1) {
                 isPlayer1winner = true;
             }
@@ -73,20 +75,20 @@ public class GuessNumber {
         return false;
     }
 
-    private void showPlayersNumbers() {
-        int[] numbersPlayer1 = Arrays.copyOf(Player.getNumbersPlayer1(), triesCount);
-        for (int number : numbersPlayer1) {
+    private void displayGameResults() {
+        displayNumbers(Arrays.copyOf(Player.getPlayer1Numbers(), triesCount));
+        if (isPlayer1winner) {
+            displayNumbers(Arrays.copyOf(Player.getPlayer2Numbers(), triesCount - 1));
+        } else {
+            displayNumbers(Arrays.copyOf(Player.getPlayer2Numbers(), triesCount));
+        }
+    }
+
+    private void displayNumbers(int[] numbers) {
+        for (int number : numbers) {
             System.out.print(number + " ");
         }
         System.out.println();
-
-        int[] numbersPlayer2 = Arrays.copyOf(Player.getNumbersPlayer2(), triesCount);
-        if (isPlayer1winner) {
-            numbersPlayer2 = Arrays.copyOf(Player.getNumbersPlayer2(), triesCount - 1);
-        }
-        for (int number : numbersPlayer2) {
-            System.out.print(number + " ");
-        }
     }
 
     public static int getMaxTries() {

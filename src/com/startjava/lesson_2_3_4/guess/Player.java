@@ -2,8 +2,8 @@ package com.startjava.lesson_2_3_4.guess;
 
 public class Player {
     private final String name;
-    private final static int[] numbersPlayer1 = new int[GuessNumber.getMaxTries()];
-    private final static int[] numbersPlayer2 = new int[GuessNumber.getMaxTries()];
+    private final static int[] player1Numbers = new int[GuessNumber.getMaxTries()];
+    private final static int[] player2Numbers = new int[GuessNumber.getMaxTries()];
     
     public Player(String name) {
         this.name = name;
@@ -13,20 +13,20 @@ public class Player {
         return name;
     }
 
-    public static int[] getNumbersPlayer1() {
-        return numbersPlayer1;
+    public static int[] getPlayer1Numbers() {
+        return player1Numbers;
     }
 
-    public static int[] getNumbersPlayer2() {
-        return numbersPlayer2;
+    public static int[] getPlayer2Numbers() {
+        return player2Numbers;
     }
 
     public void setNumberPlayer1(int enteredNumber) {
-        numbersPlayer1[GuessNumber.triesCount - 1] = enteredNumber;
+        player1Numbers[GuessNumber.triesCount - 1] = enteredNumber;
     }
 
     public void setNumberPlayer2(int enteredNumber) {
-        numbersPlayer2[GuessNumber.triesCount - 1] = enteredNumber;
+        player2Numbers[GuessNumber.triesCount - 1] = enteredNumber;
     }
 
 }
