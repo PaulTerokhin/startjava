@@ -22,11 +22,11 @@ public class Player {
     }
 
     public void setNumberPlayer1(int enteredNumber) {
-        player1Numbers[GuessNumber.triesCount - 1] = enteredNumber;
+        player1Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
     }
 
     public void setNumberPlayer2(int enteredNumber) {
-        player2Numbers[GuessNumber.triesCount - 1] = enteredNumber;
+        player2Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
     }
 
 }

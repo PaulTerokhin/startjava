@@ -10,36 +10,32 @@ public class GuessNumber {
 
     private final Player player1;
     private final Player player2;
-    private final Random random = new Random();
-    private final int hiddenNumber = random.nextInt(100 + 1);
+    private static final Random random = new Random();
+    private static int hiddenNumber = random.nextInt(100 + 1);
     private static final int maxTries = 10;
-    static int triesCount = 1;
-    // Переменная нужна,чтобы показать введенные числа правильно(без лишних 0)
-    static boolean isPlayer1winner = false;
+    private static int triesCount = 1;
+    // Переменная нужна,чтобы показать введенные числа 2 игрока при победе 1 игрока верно(без 0)
+    private static boolean isPlayer1winner = false;
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
     }
 
-     void start() {
+    void start() {
         System.out.println("У каждого игрока по " + maxTries + " попыток ");
-        Player currentPlayer = player1;
         while(true) {
-            if (makeGuess(currentPlayer)) {
+            if (makeGuess(player1) || makeGuess(player2)) {
                 break;
             }
-            if (currentPlayer == player2) {
-                if (triesCount < maxTries) {
-                    triesCount++;
-                } else {
-                    System.out.println("Ваши попытки исчерпаны.Загаданное число " + hiddenNumber);
-                    break;
-                }
+            if (triesCount < maxTries) {
+                triesCount++;
+            } else {
+                System.out.println("Ваши попытки исчерпаны.Загаданное число " + hiddenNumber);
+                break;
             }
-            currentPlayer = (currentPlayer == player1) ? player2 : player1;
         }
-         displayGameResults();
+        displayGameResults();
     }
 
     private boolean makeGuess(Player player) {
@@ -93,5 +89,21 @@ public class GuessNumber {
 
     public static int getMaxTries() {
         return maxTries;
+    }
+
+    public static int getTriesCount() {
+        return triesCount;
+    }
+
+    public static void setTriesCount() {
+        triesCount = 1;
+    }
+
+    public static void setIsPlayer1winner() {
+        isPlayer1winner = false;
+    }
+
+    public static void setHiddenNumber(){
+        hiddenNumber = random.nextInt(100 + 1);
     }
 }
