@@ -3,18 +3,23 @@ package com.startjava.lesson_2_3_4.calculator;
 import java.util.Scanner;
 
 class CalculatorTest {
+    static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
+        String choice = "yes";
         do {
-            String expression = inputMathExpression();
-            double result = Calculator.calculate(expression);
-            showResult(result);
-        } while(isNext());
+            if(choice.equals("yes")) {
+                String expression = inputMathExpression();
+                double result = Calculator.calculate(expression);
+                showResult(result);
+            }
+            System.out.print("\nХотите сыграть еще раз? [yes/no]:");
+            choice = scan.nextLine();
+        } while(!choice.equals("no"));
     }
 
     private static String inputMathExpression() {
         System.out.println("\nВведите выражение формата: 2 ^ 10");
-        Scanner scan = new Scanner(System.in);
         return scan.nextLine();
     }
 
@@ -25,21 +30,5 @@ class CalculatorTest {
         } else {
             System.out.printf("%.3f\n", result);
         }
-    }
-
-    private static boolean isNext() {
-        System.out.println("Хотите продолжить вычисления? [yes/no]:");
-        Scanner scan = new Scanner(System.in);
-        String choice = scan.nextLine();
-        if (choice.equals("no")) {
-            System.out.println("Спасибо, что воспользовались калькулятором");
-            return false;
-        }
-        if (choice.equals("yes")) {
-            System.out.print("Давайте попробуем еще раз :)");
-        } else {
-            isNext();
-        }
-        return true;
     }
 }
