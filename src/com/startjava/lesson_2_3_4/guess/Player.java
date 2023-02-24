@@ -21,12 +21,11 @@ public class Player {
         return player2Numbers;
     }
 
-    public void setNumberPlayer1(int enteredNumber) {
+    public static void setNumberPlayer1(int enteredNumber) {
         player1Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
     }
 
-    public void setNumberPlayer2(int enteredNumber) {
+    public static void setNumberPlayer2(int enteredNumber) {
         player2Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
     }
-
 }

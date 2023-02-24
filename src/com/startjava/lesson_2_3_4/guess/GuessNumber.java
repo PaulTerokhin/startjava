@@ -36,6 +36,7 @@ public class GuessNumber {
             }
         }
         displayGameResults();
+        resetGame();
     }
 
     private boolean makeGuess(Player player) {
@@ -48,9 +49,9 @@ public class GuessNumber {
 
     private void saveNumber(Player player, int number) {
         if (player == player1) {
-            player1.setNumberPlayer1(number);
+            Player.setNumberPlayer1(number);
         } else {
-            player2.setNumberPlayer2(number);
+            Player.setNumberPlayer2(number);
         }
     }
 
@@ -63,11 +64,8 @@ public class GuessNumber {
             }
             return true;
         }
-        if (playerNumber > hiddenNumber) {
-            System.out.println("Число " + playerNumber + " больше того, что загадал компьютер");
-        } else {
-            System.out.println("Число " + playerNumber + " меньше того, что загадал компьютер");
-        }
+        System.out.println("Число " + playerNumber +
+                ((playerNumber > hiddenNumber) ? " больше" : " меньше") + " того, что загадал компьютер");
         return false;
     }
 
@@ -87,23 +85,19 @@ public class GuessNumber {
         System.out.println();
     }
 
+    private static void resetGame() {
+        Arrays.fill(Player.getPlayer1Numbers(), 0, triesCount, 0 );
+        Arrays.fill(Player.getPlayer2Numbers(), 0, triesCount, 0 );
+        triesCount = 1;
+        isPlayer1winner = false;
+        hiddenNumber = random.nextInt(100 + 1);
+    }
+
     public static int getMaxTries() {
         return maxTries;
     }
 
     public static int getTriesCount() {
         return triesCount;
-    }
-
-    public static void setTriesCount() {
-        triesCount = 1;
-    }
-
-    public static void setIsPlayer1winner() {
-        isPlayer1winner = false;
-    }
-
-    public static void setHiddenNumber(){
-        hiddenNumber = random.nextInt(100 + 1);
     }
 }
