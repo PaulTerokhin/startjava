@@ -20,7 +20,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException("Введен некорректный знак");
         };
     }
-    static int checkNumber(String positiveInteger) {
+    private static int checkNumber(String positiveInteger) {
         int number;
         Scanner scan = new Scanner(System.in);
         while(true) {
