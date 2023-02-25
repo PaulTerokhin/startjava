@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.calculator;
 
-import java.util.Scanner;
-
 public class Calculator {
 
     public static double calculate(String mathExpression) {
@@ -20,25 +18,12 @@ public class Calculator {
             default -> throw new IllegalArgumentException("Введен некорректный знак");
         };
     }
-    private static int checkNumber(String positiveInteger) {
-        int number;
-        Scanner scan = new Scanner(System.in);
-        while(true) {
-            try {
-                number = Integer.parseInt(positiveInteger);
-                if (number <= 0) {
-                    throw new IllegalArgumentException("Число должно быть положительным!");
-                }
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка: число " + positiveInteger + " должно быть целым. Введите число заново");
-                positiveInteger = scan.next();
-            } catch (IllegalArgumentException e) {
-                System.out.println("Ошибка: число " + positiveInteger +
-                        " должно быть положительным. Введите число заново");
-                positiveInteger = scan.next();
-            }
+
+    private static int checkNumber(String number) {
+        int positiveInteger = Integer.parseInt(number);
+        if (positiveInteger < 0) {
+            throw new IllegalArgumentException();
         }
-        return number;
+        return positiveInteger;
     }
 }

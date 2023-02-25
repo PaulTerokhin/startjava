@@ -9,9 +9,16 @@ class CalculatorTest {
         String choice = "yes";
         do {
             if(choice.equals("yes")) {
-                String expression = inputMathExpression();
-                double result = Calculator.calculate(expression);
-                showResult(result);
+                while (true) {
+                    String expression = inputMathExpression();
+                    try {
+                        double result = Calculator.calculate(expression);
+                        showResult(result);
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Числа должны быть целыми и положительными. Введите выражение заново.");
+                    }
+                }
             }
             System.out.print("\nХотите сыграть еще раз? [yes/no]:");
             choice = scan.nextLine();
