@@ -35,12 +35,4 @@ public class Player {
     public static int[] getPlayer2Numbers() {
         return player2Numbers;
     }
-
-
-
-
-
-
-
-
 }
