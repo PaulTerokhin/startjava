@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    private final Player player1;
-    private final Player player2;
-    private static final Random random = new Random();
-    private static int hiddenNumber = random.nextInt(100 + 1);
+    static Player player1;
+    static Player player2;
+    private final Random random = new Random();
+    private int hiddenNumber = random.nextInt(100 + 1);
     private static final int maxTries = 10;
     private static int triesCount = 1;
     // Переменная нужна,чтобы показать введенные числа 2 игрока при победе 1 игрока верно(без 0)
@@ -36,23 +36,22 @@ public class GuessNumber {
             }
         }
         displayGameResults();
-        resetGame();
     }
 
-    private boolean makeGuess(Player player) {
-        System.out.println(player.getName() + ", введите число: ");
-        Scanner scan = new Scanner(System.in);
-        int playerNumber = scan.nextInt();
-        saveNumber(player, playerNumber);
-        return checkNumber(player, playerNumber);
-    }
-
-    private void saveNumber(Player player, int number) {
-        if (player == player1) {
-            Player.setNumberPlayer1(number);
-        } else {
-            Player.setNumberPlayer2(number);
+    public boolean makeGuess(Player player) {
+        int playerNumber;
+        while(true) {
+            System.out.println(player.getName() + ", введите число: ");
+            Scanner scan = new Scanner(System.in);
+            playerNumber = scan.nextInt();
+            try {
+                Player.setNumberPlayer(player, playerNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Число должно входить в полуинтервал (0, 100]");
+            }
         }
+        return checkNumber(player, playerNumber);
     }
 
     private boolean checkNumber(Player player, int playerNumber) {
@@ -85,7 +84,7 @@ public class GuessNumber {
         System.out.println();
     }
 
-    private static void resetGame() {
+    void reset() {
         Arrays.fill(Player.getPlayer1Numbers(), 0, triesCount, 0 );
         Arrays.fill(Player.getPlayer2Numbers(), 0, triesCount, 0 );
         triesCount = 1;

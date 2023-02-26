@@ -13,6 +13,21 @@ public class Player {
         return name;
     }
 
+    public static void setNumberPlayer(Player player, int enteredNumber) {
+        if (player == GuessNumber.player1) {
+            player1Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
+        } else {
+            player2Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
+        }
+        checkNumberRange(enteredNumber);
+    }
+
+    public static void checkNumberRange(int enteredNumber) {
+        if (enteredNumber <= 0 || enteredNumber > 100) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static int[] getPlayer1Numbers() {
         return player1Numbers;
     }
@@ -21,11 +36,11 @@ public class Player {
         return player2Numbers;
     }
 
-    public static void setNumberPlayer1(int enteredNumber) {
-        player1Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
-    }
 
-    public static void setNumberPlayer2(int enteredNumber) {
-        player2Numbers[GuessNumber.getTriesCount() - 1] = enteredNumber;
-    }
+
+
+
+
+
+
 }

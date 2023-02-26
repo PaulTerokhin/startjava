@@ -14,6 +14,7 @@ public class GuessNumberTest {
         do {
             if(choice.equals("yes")) {
                 game.start();
+                game.reset();
             }
             System.out.print("\nХотите сыграть еще раз? [yes/no]:");
             choice = scan.nextLine();
@@ -24,5 +25,4 @@ public class GuessNumberTest {
         System.out.print("Введите имя ");
         return scan.nextLine();
     }
-
 }
