@@ -4,25 +4,24 @@ import java.util.Scanner;
 
 public class GuessNumberTest {
 
-    static Scanner scan = new Scanner(System.in);
-
     public static void main(String[] args) {
-        Player player1 = new Player(inputName());
-        Player player2 = new Player(inputName());
+        Player player1 = createPlayer();
+        Player player2 = createPlayer();
         GuessNumber game = new GuessNumber(player1, player2);
         String choice = "yes";
         do {
             if(choice.equals("yes")) {
                 game.start();
-                game.reset();
             }
             System.out.print("\nХотите сыграть еще раз? [yes/no]:");
+            Scanner scan = new Scanner(System.in);
             choice = scan.nextLine();
         } while(!choice.equals("no"));
     }
 
-    private static String inputName() {
-        System.out.print("Введите имя ");
-        return scan.nextLine();
+    private static Player createPlayer() {
+        System.out.print("Введите имя: ");
+        Scanner scan = new Scanner(System.in);
+        return new Player(scan.nextLine());
     }
 }

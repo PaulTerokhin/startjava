@@ -8,14 +8,9 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    static Player player1;
-    static Player player2;
-    private final Random random = new Random();
-    private int hiddenNumber = random.nextInt(100 + 1);
-    private static final int maxTries = 10;
-    private static int triesCount = 1;
-    // Переменная нужна,чтобы показать введенные числа 2 игрока при победе 1 игрока верно(без 0)
-    private static boolean isPlayer1winner = false;
+    private final Player player1;
+    private final Player player2;
+    private static final int MAX_TRIES = 10;
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
@@ -23,44 +18,48 @@ public class GuessNumber {
     }
 
     void start() {
-        System.out.println("У каждого игрока по " + maxTries + " попыток ");
+        Random random = new Random();
+        int hiddenNumber = random.nextInt(100) + 1;
+        System.out.println("У каждого игрока по " + MAX_TRIES + " попыток ");
+
+        Player currentPlayer = player1;
         while(true) {
-            if (makeGuess(player1) || makeGuess(player2)) {
-                break;
-            }
-            if (triesCount < maxTries) {
-                triesCount++;
+            if (currentPlayer.getTriesCount() < MAX_TRIES) {
+                currentPlayer.setTriesCount(currentPlayer.getTriesCount() + 1);
             } else {
                 System.out.println("Ваши попытки исчерпаны.Загаданное число " + hiddenNumber);
                 break;
             }
+            if (isGuessed(currentPlayer, hiddenNumber)) {
+                break;
+            }
+            currentPlayer = (currentPlayer == player1) ? player2 : player1;
         }
         displayGameResults();
+        reset(player1);
+        reset(player2);
     }
 
-    public boolean makeGuess(Player player) {
+    private boolean isGuessed(Player player, int hiddenNumber) {
         int playerNumber;
         while(true) {
             System.out.println(player.getName() + ", введите число: ");
             Scanner scan = new Scanner(System.in);
             playerNumber = scan.nextInt();
             try {
-                Player.setNumberPlayer(player, playerNumber);
+                player.setNumberPlayer(player, playerNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("Число должно входить в полуинтервал (0, 100]");
             }
         }
-        return checkNumber(player, playerNumber);
+        return compareNumbers(player, playerNumber, hiddenNumber);
     }
 
-    private boolean checkNumber(Player player, int playerNumber) {
+    private boolean compareNumbers(Player player, int playerNumber, int hiddenNumber) {
         if (playerNumber == hiddenNumber) {
             System.out.println("Игрок " + player.getName() + " угадал число " +
-                    hiddenNumber + " с " + triesCount + " попытки");
-            if (player == player1) {
-                isPlayer1winner = true;
-            }
+                    hiddenNumber + " с " + player.getTriesCount() + " попытки");
             return true;
         }
         System.out.println("Число " + playerNumber +
@@ -69,12 +68,8 @@ public class GuessNumber {
     }
 
     private void displayGameResults() {
-        displayNumbers(Arrays.copyOf(Player.getPlayer1Numbers(), triesCount));
-        if (isPlayer1winner) {
-            displayNumbers(Arrays.copyOf(Player.getPlayer2Numbers(), triesCount - 1));
-        } else {
-            displayNumbers(Arrays.copyOf(Player.getPlayer2Numbers(), triesCount));
-        }
+        displayNumbers(player1.getPlayerNumbers());
+        displayNumbers(player2.getPlayerNumbers());
     }
 
     private void displayNumbers(int[] numbers) {
@@ -84,19 +79,8 @@ public class GuessNumber {
         System.out.println();
     }
 
-    void reset() {
-        Arrays.fill(Player.getPlayer1Numbers(), 0, triesCount, 0 );
-        Arrays.fill(Player.getPlayer2Numbers(), 0, triesCount, 0 );
-        triesCount = 1;
-        isPlayer1winner = false;
-        hiddenNumber = random.nextInt(100 + 1);
-    }
-
-    public static int getMaxTries() {
-        return maxTries;
-    }
-
-    public static int getTriesCount() {
-        return triesCount;
+    private void reset(Player player) {
+        Arrays.fill(player.getPlayerNumbers(), 0);
+        player.setTriesCount(0);
     }
 }
