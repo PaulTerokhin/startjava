@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Player {
     private final String name;
-    private final int[] playerNumbers = new int[10];
+    private final int[] numbers = new int[10];
     private int triesCount = 0;
     
     public Player(String name) {
@@ -15,15 +15,15 @@ public class Player {
         return name;
     }
 
-    public void setNumberPlayer(Player player, int enteredNumber) {
-        player.playerNumbers[player.triesCount - 1] = enteredNumber;
+    public void addNumber(int enteredNumber) {
+        numbers[triesCount - 1] = enteredNumber;
         if (enteredNumber <= 0 || enteredNumber > 100) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Число должно входить в полуинтервал (0, 100]");
         }
     }
 
-    public int[] getPlayerNumbers() {
-        return Arrays.copyOf(playerNumbers, triesCount);
+    public int[] getNumbers() {
+        return Arrays.copyOf(numbers, triesCount);
     }
 
     public int getTriesCount() {
@@ -32,5 +32,9 @@ public class Player {
 
     public void setTriesCount(int triesCount) {
         this.triesCount = triesCount;
+    }
+
+    public void resetNumbers() {
+        Arrays.fill(numbers,0,triesCount,0);
     }
 }

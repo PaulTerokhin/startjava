@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class GuessNumberTest {
 
+    static Scanner scan = new Scanner(System.in);
+
     public static void main(String[] args) {
         Player player1 = createPlayer();
         Player player2 = createPlayer();
@@ -14,14 +16,12 @@ public class GuessNumberTest {
                 game.start();
             }
             System.out.print("\nХотите сыграть еще раз? [yes/no]:");
-            Scanner scan = new Scanner(System.in);
             choice = scan.nextLine();
         } while(!choice.equals("no"));
     }
 
     private static Player createPlayer() {
         System.out.print("Введите имя: ");
-        Scanner scan = new Scanner(System.in);
         return new Player(scan.nextLine());
     }
 }

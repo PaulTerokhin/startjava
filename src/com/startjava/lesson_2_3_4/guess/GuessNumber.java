@@ -1,9 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
-import java.util.Arrays;
-
 import java.util.Random;
-
 import java.util.Scanner;
 
 public class GuessNumber {
@@ -42,21 +39,22 @@ public class GuessNumber {
 
     private boolean isGuessed(Player player, int hiddenNumber) {
         int playerNumber;
+        Scanner scan = new Scanner(System.in);
         while(true) {
             System.out.println(player.getName() + ", введите число: ");
-            Scanner scan = new Scanner(System.in);
             playerNumber = scan.nextInt();
             try {
-                player.setNumberPlayer(player, playerNumber);
+                player.addNumber(playerNumber);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("Число должно входить в полуинтервал (0, 100]");
+                System.out.println("Ошибка: " + e.getMessage());
             }
         }
-        return compareNumbers(player, playerNumber, hiddenNumber);
+        return compareNumbers(player, hiddenNumber);
     }
 
-    private boolean compareNumbers(Player player, int playerNumber, int hiddenNumber) {
+    private boolean compareNumbers(Player player, int hiddenNumber) {
+        int playerNumber = player.getNumbers()[player.getTriesCount() - 1];
         if (playerNumber == hiddenNumber) {
             System.out.println("Игрок " + player.getName() + " угадал число " +
                     hiddenNumber + " с " + player.getTriesCount() + " попытки");
@@ -68,8 +66,8 @@ public class GuessNumber {
     }
 
     private void displayGameResults() {
-        displayNumbers(player1.getPlayerNumbers());
-        displayNumbers(player2.getPlayerNumbers());
+        displayNumbers(player1.getNumbers());
+        displayNumbers(player2.getNumbers());
     }
 
     private void displayNumbers(int[] numbers) {
@@ -80,7 +78,7 @@ public class GuessNumber {
     }
 
     private void reset(Player player) {
-        Arrays.fill(player.getPlayerNumbers(), 0);
+        player.resetNumbers();
         player.setTriesCount(0);
     }
 }
