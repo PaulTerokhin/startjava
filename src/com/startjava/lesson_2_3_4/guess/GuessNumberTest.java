@@ -9,7 +9,8 @@ public class GuessNumberTest {
     public static void main(String[] args) {
         Player player1 = createPlayer();
         Player player2 = createPlayer();
-        GuessNumber game = new GuessNumber(player1, player2);
+        Player player3 = createPlayer();
+        GuessNumber game = new GuessNumber(player1, player2, player3);
         String choice = "yes";
         do {
             if(choice.equals("yes")) {

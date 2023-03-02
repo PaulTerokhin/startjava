@@ -5,22 +5,22 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    private final Player player1;
-    private final Player player2;
-    private static final int MAX_TRIES = 10;
+    private final Player[] players;
+    private static final int MAX_TRIES = 3;
+    private final Random random = new Random();
 
-    public GuessNumber(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public GuessNumber(Player... players) {
+        this.players = players;
     }
 
     void start() {
-        Random random = new Random();
         int hiddenNumber = random.nextInt(100) + 1;
         System.out.println("У каждого игрока по " + MAX_TRIES + " попыток ");
+        shufflePlayers();
 
-        Player currentPlayer = player1;
+        int currentPlayerIndex = 0;
         while(true) {
+            Player currentPlayer = players[currentPlayerIndex];
             if (currentPlayer.getTriesCount() < MAX_TRIES) {
                 currentPlayer.setTriesCount(currentPlayer.getTriesCount() + 1);
             } else {
@@ -30,11 +30,19 @@ public class GuessNumber {
             if (isGuessed(currentPlayer, hiddenNumber)) {
                 break;
             }
-            currentPlayer = (currentPlayer == player1) ? player2 : player1;
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
         }
         displayGameResults();
-        reset(player1);
-        reset(player2);
+        reset();
+    }
+
+    private void shufflePlayers() {
+        for (int i = players.length - 1; i > 0; i--) {
+            int index = random.nextInt(i + 1);
+            Player temp = players[index];
+            players[index] = players[i];
+            players[i] = temp;
+        }
     }
 
     private boolean isGuessed(Player player, int hiddenNumber) {
@@ -66,19 +74,23 @@ public class GuessNumber {
     }
 
     private void displayGameResults() {
-        displayNumbers(player1.getNumbers());
-        displayNumbers(player2.getNumbers());
+        for(Player player: players) {
+            displayNumbers(player.getNumbers(), player.getName());
+        }
     }
 
-    private void displayNumbers(int[] numbers) {
+    private void displayNumbers(int[] numbers, String playerName) {
+        System.out.print(playerName + ": ");
         for (int number : numbers) {
             System.out.print(number + " ");
         }
         System.out.println();
     }
 
-    private void reset(Player player) {
-        player.resetNumbers();
-        player.setTriesCount(0);
+    private void reset() {
+        for(Player player: players) {
+            player.resetNumbers();
+            player.setTriesCount(0);
+        }
     }
 }
