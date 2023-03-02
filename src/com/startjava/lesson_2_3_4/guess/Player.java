@@ -3,6 +3,7 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
+
     private final String name;
     private final int[] numbers = new int[3];
     private int triesCount = 0;
