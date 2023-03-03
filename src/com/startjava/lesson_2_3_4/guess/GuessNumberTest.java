@@ -3,7 +3,6 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Scanner;
 
 public class GuessNumberTest {
-
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
