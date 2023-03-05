@@ -21,7 +21,7 @@ public class GuessNumberTest {
     }
 
     private static Player createPlayer() {
-        System.out.print("Введите имя: ");
+        System.out.print("Введите имя:");
         return new Player(scan.nextLine());
     }
 }

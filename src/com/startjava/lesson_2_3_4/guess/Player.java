@@ -5,8 +5,9 @@ import java.util.Arrays;
 public class Player {
 
     private final String name;
-    private final int[] numbers = new int[3];
+    private final int[] numbers = new int[10];
     private int triesCount;
+    private int wins;
     
     public Player(String name) {
         this.name = name;
@@ -35,5 +36,17 @@ public class Player {
     public void clearTries() {
         Arrays.fill(numbers, 0, triesCount, 0);
         triesCount = 0;
+    }
+
+    public void recordWin() {
+        wins++;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void clearWins() {
+        wins = 0;
     }
 }

@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class GuessNumber {
 
     private final Player[] players;
-    private static final int MAX_ROUNDS = 3;
+    private static final int MAX_TRIES = 10;
     private int hiddenNumber;
+    private static final int TOTAL_ROUNDS = 3;
 
     public GuessNumber(Player... players) {
         this.players = players;
@@ -15,26 +16,31 @@ public class GuessNumber {
 
     void start() {
         Random random = new Random();
-        hiddenNumber = random.nextInt(100) + 1;
-        System.out.println("У каждого игрока по " + MAX_ROUNDS + " попытки ");
         shufflePlayers(random);
+        for (int i = 1; i <= TOTAL_ROUNDS; i++) {
+            hiddenNumber = random.nextInt(100) + 1;
+            System.out.println("\nУ каждого игрока по " + MAX_TRIES + " попыток. Раунд " + i);
 
-        boolean isGameOver = false;
-        while(!isGameOver) {
-            for (Player player : players) {
-                if (player.getTriesCount() == MAX_ROUNDS) {
-                    System.out.println("Ваши попытки исчерпаны. Загаданное число " + hiddenNumber);
-                    isGameOver = true;
-                    break;
-                }
-                if (isGuessed(player)) {
-                    isGameOver = true;
-                    break;
+            boolean isGameOver = false;
+            while (!isGameOver) {
+                for (Player player : players) {
+                    if (player.getTriesCount() == MAX_TRIES) {
+                        System.out.println("Ваши попытки исчерпаны. Загаданное число " + hiddenNumber);
+                        isGameOver = true;
+                        break;
+                    }
+                    if (isGuessed(player)) {
+                        player.recordWin();
+                        isGameOver = true;
+                        break;
+                    }
                 }
             }
+            displayNumbers();
+            reset();
         }
-        displayNumbers();
-        reset();
+        findWinner();
+        resetWins();
     }
 
     private void shufflePlayers(Random random) {
@@ -87,6 +93,34 @@ public class GuessNumber {
     private void reset() {
         for(Player player : players) {
             player.clearTries();
+        }
+    }
+
+    private void findWinner() {
+        int maxWins = 0;
+        Player winner = null;
+        boolean hasWinner = false;
+        for (Player player : players) {
+            int wins = player.getWins();
+            if (wins > maxWins) {
+                maxWins = wins;
+                winner = player;
+                hasWinner = true;
+            } else if (wins == maxWins) {
+                hasWinner = false;
+            }
+        }
+
+        if (hasWinner) {
+            System.out.println("\nПобедил игрок " + winner.getName());
+        } else {
+            System.out.println("Ничья");
+        }
+    }
+
+    private void resetWins() {
+        for(Player player : players) {
+            player.clearWins();
         }
     }
 }
