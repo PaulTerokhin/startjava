@@ -33,12 +33,12 @@ public class Player {
         return triesCount;
     }
 
-    public void clearTries() {
+    public void resetTriesCount() {
         Arrays.fill(numbers, 0, triesCount, 0);
         triesCount = 0;
     }
 
-    public void recordWin() {
+    public void incrementWins() {
         wins++;
     }
 
@@ -46,7 +46,7 @@ public class Player {
         return wins;
     }
 
-    public void clearWins() {
+    public void resetWinsCount() {
         wins = 0;
     }
 }
